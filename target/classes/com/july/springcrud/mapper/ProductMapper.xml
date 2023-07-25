@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.july.springcrud.mapper.ProductMapper">
+
+
+ <resultMap type="product" id="result">
+<id property="productid" column="productid" />
+<result property="productname" column="productname" />
+<result property="categoryid" column="categoryid" />
+<result property="subcategoryid" column="subcategoryid" />
+<result property="productdescription" column="productdescription" />
+<result property="price" column="price" />
+<result property="quantity" column="quantity" />
+
+</resultMap>
+
+
+ <select id="getAllProducts" resultType="product" resultMap="result">
+SELECT * FROM springproducts.products
+</select>
+
+
+  <delete id="deleteProduct" parameterType="int">
+DELETE FROM springproducts.products WHERE productid = #{productid}
+</delete>
+ 
+ </mapper>

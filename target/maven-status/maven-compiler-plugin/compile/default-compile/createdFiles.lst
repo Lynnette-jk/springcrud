@@ -1,0 +1,6 @@
+com\july\springcrud\model\Subcategories.class
+com\july\springcrud\controller\ProductController.class
+com\july\springcrud\model\Product.class
+com\july\springcrud\service\ProductService.class
+com\july\springcrud\config\MyBatisConfig.class
+com\july\springcrud\model\Categories.class
