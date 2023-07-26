@@ -10,10 +10,10 @@
     <form action="${action == 'edit' ? 'updateProduct' : 'addProduct'}" method="post">
         <input type="hidden" name="id" value="${product.productid}">
         <label for="name">Name:</label>
-        <input type="text" name="name" value="${product.productname}" required>
+        <input type="text" name="productname" value="${product.productname}" required>
         <br>
         <label for="category">Category:</label>
-        <select name="categoryId">
+        <%--<select name="categoryId">
             <c:forEach items="${categories}" var="category">
                 <option value="${categoryid}" ${product.categoryid == categoryid ? 'selected' : ''}>${categoryname}</option>
             </c:forEach>
@@ -25,9 +25,15 @@
                 <option value="${subcategoryid}" ${product.subcategoryid == subcategoryid ? 'selected' : ''}>${subcategoryname}</option>
             </c:forEach>
         </select>
+        <br> --%>
+        <label for="categoryId">Category ID:</label>
+        <input type="text" name="categoryid" value="${product.categoryid}" readonly>
         <br>
-        <label for="description">Description:</label>
-        <input type="text" name="description" value="${product.description}" required>
+        <label for="subCategoryId">Sub-category ID:</label>
+        <input type="text" name="subcategoryid" value="${product.subcategoryid}" readonly>
+        <br>
+        <label for="productdescription">Description:</label>
+        <input type="text" name="productdescription" value="${product.productdescription}" required>
         <br>
         <label for="price">Price:</label>
         <input type="number" name="price" value="${product.price}" step="0.01" required>

@@ -33,7 +33,7 @@
                 <td>${product.productdescription}</td>
                 <td>${product.price}</td>
                 <td>${product.quantity}</td>
-                <td><a href="editProduct?id=${product.productid}">Edit</a></td>
+                <td><a href="${pageContext.request.contextPath}/products/editProduct/${productid}">Edit</a></td>
                 <td><a href="deleteProduct?id=${product.productid}">Delete</a></td>
             </tr>
         </c:forEach>

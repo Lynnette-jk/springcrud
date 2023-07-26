@@ -6,25 +6,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.july.springcrud.mapper.ProductMapper">
 
 
- <resultMap type="product" id="result">
-<id property="productid" column="productid" />
-<result property="productname" column="productname" />
-<result property="categoryid" column="categoryid" />
-<result property="subcategoryid" column="subcategoryid" />
-<result property="productdescription" column="productdescription" />
-<result property="price" column="price" />
-<result property="quantity" column="quantity" />
+	<resultMap type="com.july.springcrud.model.Product" id="result">
+		<id property="productid" column="productid" />
+		<result property="productname" column="productname" />
+		<result property="categoryid" column="categoryid" />
+		<result property="subcategoryid" column="subcategoryid" />
+		<result property="productdescription"
+			column="productdescription" />
+		<result property="price" column="price" />
+		<result property="quantity" column="quantity" />
 
-</resultMap>
-
-
- <select id="getAllProducts" resultType="product" resultMap="result">
-SELECT * FROM springproducts.products
-</select>
+	</resultMap>
 
 
-  <delete id="deleteProduct" parameterType="int">
-DELETE FROM springproducts.products WHERE productid = #{productid}
-</delete>
- 
- </mapper>
+	<select id="getAllProducts"
+		resultMap="result">
+		SELECT * FROM springproducts.products
+	</select>
+
+	<!-- Get a product by ID -->
+	<select id="getProductById" resultMap="result"
+		parameterType="int">
+		SELECT * FROM springproducts.products WHERE productid = #{productid}
+	</select>
+
+	<!-- Add a new product -->
+	<insert id="addProduct" parameterType="com.july.springcrud.model.Product">
+		INSERT INTO springproducts.products (productname, categoryid, subcategoryid,
+		productdescription, price, quantity)
+		VALUES (#{productname}, #{categoryid}, #{subcategoryid},
+		#{productdescription}, #{price}, #{quantity})
+	</insert>
+
+	<!-- Update a product -->
+	<update id="editProduct" parameterType="com.july.springcrud.model.Product">
+		UPDATE springproducts.products
+		SET productname = #{productname}, categoryid = #{categoryid},
+		subcategoryid = #{subcategoryid},
+		productdescription = #{productdescription}, price = #{price}, quantity = #{quantity}
+		WHERE productid = #{productid}
+	</update>
+
+	<!-- Delete a product -->
+	<delete id="deleteProduct" parameterType="int">
+		DELETE FROM springproducts.products WHERE productid = #{productid}
+	</delete>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.july.springcrud.mapper.CategoryMapper">
+
+
+
+    <resultMap id="result" type="com.july.springcrud.model.Categories">
+        <id property="categoryid" column="categoryid" />
+        <result property="categoryname" column="categoryname" />
+    </resultMap>
+
+    <!-- Insert a new category -->
+    <insert id="insertCategory" parameterType="com.july.springcrud.model.Categories">
+        INSERT INTO springproducts.categories (categoryname)
+        VALUES (#{categoryname})
+    </insert>
+
+    <!-- Update an existing category -->
+    <update id="updateCategory" parameterType="com.july.springcrud.model.Categories">
+        UPDATE springproducts.categories
+        SET categoryname = #{categoryname}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete a category -->
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM springproducts.categories
+        WHERE categoryid = #{categoryid}
+    </delete>
+
+    <!-- Get all categories -->
+    <select id="getAllCategories" resultType="category" resultMap="result">
+        SELECT * FROM springproducts.categories
+    </select>
+
+    <!-- Get a category by ID -->
+    <select id="getCategoryById" resultMap="result" parameterType="int">
+        SELECT * FROM springproducts.categories
+        WHERE categoryid = #{categoryid}
+    </select>
+
+</mapper>

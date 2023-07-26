@@ -30,14 +30,41 @@ public class ProductService {
 
 	}
 
-	public int calculateTotalPrice() {
-		List<Product> products = allProducts();
-		int totalPrice = 0;
-		for (Product product : products) {
-			totalPrice += product.getPrice();
-		}
-		return totalPrice;
-	}
+
+    public Product getProductById(int productid) {
+    	SqlSession session = sf.openSession();
+		Object getProductById = session.selectOne("com.july.springcrud.mapper.ProductMapper.getProductById");
+		session.close();
+		return getProductById(productid);
+    }
+
+    public void addProduct(Product product) {
+    	SqlSession session = sf.openSession();
+    	try {session.insert("com.july.springcrud.mapper.ProductMapper.addProduct", product);
+    		session.commit();
+    	}finally {
+    		session.close();
+    	}
+    }
+
+    public void editProduct(int productid) {
+    	SqlSession session = sf.openSession();
+    	try {session.update("com.july.springcrud.mapper.ProductMapper.editProduct", productid);
+    		session.commit();
+    	}finally {
+    		session.close();
+    	}
+    }
+
+    public void deleteProduct(int productid) {
+    	SqlSession session = sf.openSession();
+    	try {session.delete("com.july.springcrud.mapper.ProductMapper.deleteProduct", productid);
+    		session.commit();
+    	}finally {
+    		session.close();
+    	}
+    }
+	
 
 
 }

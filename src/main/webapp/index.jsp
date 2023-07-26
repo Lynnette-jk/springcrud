@@ -8,5 +8,6 @@
 </head>
 <body>
     <li><a href="${pageContext.request.contextPath}/products">View All Products</a></li>
+    <li><a href="${pageContext.request.contextPath}/addCategory">Manage Categories</a></li>
 </body>
 </html>
